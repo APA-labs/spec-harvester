@@ -9,6 +9,12 @@ description = "Crawler skeleton for spec harvesting"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Spec Harvester" }]
+dependencies = [
+  "httpx>=0.27.0",
+  "beautifulsoup4>=4.12.0",
+  "lxml>=5.2.0",
+  "pytest>=8.0.0"
+]
 
 [project.scripts]
 spec-crawler = "spec_crawler.cli:main"
