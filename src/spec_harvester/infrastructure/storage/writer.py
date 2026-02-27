@@ -5,9 +5,9 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-from spec_crawler.domain.hashing import sha256_hexdigest
-from spec_crawler.domain.meta import DocumentMeta
-from spec_crawler.infrastructure.http.http_client import ResponseData
+from spec_harvester.domain.hashing import sha256_hexdigest
+from spec_harvester.domain.meta import DocumentMeta
+from spec_harvester.infrastructure.http.http_client import ResponseData
 
 
 @dataclass(frozen=True)

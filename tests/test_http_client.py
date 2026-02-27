@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from spec_crawler.infrastructure.http.http_client import FetchError, fetch
+from spec_harvester.infrastructure.http.http_client import FetchError, fetch
 
 
 @dataclass

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from spec_crawler.domain.policy import Policy, PolicyError
+from spec_harvester.domain.policy import Policy, PolicyError
 
 
 POLICY_DIR = Path(__file__).resolve().parent / "policies"

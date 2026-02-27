@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 
-from spec_crawler.infrastructure.http.robots import RobotsChecker
+from spec_harvester.infrastructure.http.robots import RobotsChecker
 
 
 def test_robots_deny_and_cache_once() -> None:

@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 
-from spec_crawler.domain.hashing import sha256_hexdigest
-from spec_crawler.infrastructure.http.http_client import ResponseData
-from spec_crawler.infrastructure.storage.writer import write_document
+from spec_harvester.domain.hashing import sha256_hexdigest
+from spec_harvester.infrastructure.http.http_client import ResponseData
+from spec_harvester.infrastructure.storage.writer import write_document
 
 
 def test_write_document_saves_raw_and_meta_with_sha_match(tmp_path) -> None:

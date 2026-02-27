@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from spec_crawler.infrastructure.storage.manifest import should_save
+from spec_harvester.infrastructure.storage.manifest import should_save
 
 
 def test_should_save_second_run_is_no_change_by_etag(tmp_path) -> None:

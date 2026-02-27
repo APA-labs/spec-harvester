@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Literal
 
-from spec_crawler.domain.url import normalize_url
+from spec_harvester.domain.url import normalize_url
 
 ChangeDecision = Literal["fetched", "no_change"]
 

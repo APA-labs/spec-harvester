@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import argparse
 
-from spec_crawler.application.queue import run_crawl
-from spec_crawler.infrastructure.config.policy_loader import load_policy
+from spec_harvester.application.queue import run_crawl
+from spec_harvester.infrastructure.config.policy_loader import load_policy
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="spec_crawler",
+        prog="spec_harvester",
         description="Specification crawler CLI",
     )
     subparsers = parser.add_subparsers(dest="command")

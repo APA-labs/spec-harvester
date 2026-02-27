@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from spec_crawler.infrastructure.parsers.links import extract_links
+from spec_harvester.infrastructure.parsers.links import extract_links
 
 
 def test_extract_links_w3c_tr_sample_with_policy_filters() -> None:

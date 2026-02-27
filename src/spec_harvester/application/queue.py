@@ -8,14 +8,14 @@ from pathlib import Path
 import time
 from typing import Callable
 
-from spec_crawler.domain.hashing import sha256_hexdigest
-from spec_crawler.domain.policy import Policy
-from spec_crawler.domain.url import normalize_url
-from spec_crawler.infrastructure.http.http_client import FetchError, ResponseData, fetch
-from spec_crawler.infrastructure.http.robots import RobotsChecker
-from spec_crawler.infrastructure.parsers.links import extract_links
-from spec_crawler.infrastructure.storage.manifest import should_save
-from spec_crawler.infrastructure.storage.writer import write_document
+from spec_harvester.domain.hashing import sha256_hexdigest
+from spec_harvester.domain.policy import Policy
+from spec_harvester.domain.url import normalize_url
+from spec_harvester.infrastructure.http.http_client import FetchError, ResponseData, fetch
+from spec_harvester.infrastructure.http.robots import RobotsChecker
+from spec_harvester.infrastructure.parsers.links import extract_links
+from spec_harvester.infrastructure.storage.manifest import should_save
+from spec_harvester.infrastructure.storage.writer import write_document
 
 
 @dataclass(frozen=True)

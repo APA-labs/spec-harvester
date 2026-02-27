@@ -1,5 +1,5 @@
 """Application layer (use-cases/orchestration)."""
 
-from spec_crawler.application.queue import CrawlRunResult, run_crawl
+from spec_harvester.application.queue import CrawlRunResult, run_crawl
 
 __all__ = ["CrawlRunResult", "run_crawl"]

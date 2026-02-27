@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.scripts]
-spec-crawler = "spec_crawler.cli:main"
+spec-crawler = "spec_harvester.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
