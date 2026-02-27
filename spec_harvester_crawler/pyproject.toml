@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spec-harvester-crawler"
+version = "0.1.0"
+description = "Crawler skeleton for spec harvesting"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Spec Harvester" }]
+
+[project.scripts]
+spec-crawler = "spec_crawler.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
