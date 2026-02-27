@@ -1,0 +1,16 @@
+{
+  "name": "w3c",
+  "seed_urls": [
+    "https://www.w3.org/TR/"
+  ],
+  "allowed_domains": [
+    "www.w3.org"
+  ],
+  "allowed_paths_prefix": [
+    "/TR/"
+  ],
+  "disallowed_paths_prefix": [
+    "/TR/2018/"
+  ],
+  "user_agent": "SpecHarvesterBot/0.1"
+}
