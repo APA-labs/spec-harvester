@@ -1,16 +1,20 @@
 # Spec Harvester Crawler
 
-TASK-001 scaffold for the crawler project.
+Crawler project scaffold with DDD-oriented package layout.
 
 ## Quick Start
 
 ```bash
 python -m pip install -e .
 python -m spec_crawler --help
-python -m spec_crawler crawl --policy w3c --maxPages 10
+python -m spec_crawler crawl --policy w3c --max-pages 10
 ```
 
-## Current Status
+## Project Layout
 
-- Project skeleton is ready.
-- `crawl` and `audit` commands are placeholders.
+- `src/spec_crawler/domain`: domain models/rules
+- `src/spec_crawler/application`: use-case orchestration
+- `src/spec_crawler/infrastructure`: external adapters (http/storage/config/parsers)
+- `src/spec_crawler/interfaces`: CLI and other interfaces
+
+Detailed structure guide: `docs/DDD_ARCHITECTURE.md`
