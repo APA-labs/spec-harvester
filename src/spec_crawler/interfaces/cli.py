@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import argparse
 
+from spec_crawler.application.queue import run_crawl
+from spec_crawler.infrastructure.config.policy_loader import load_policy
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -12,7 +15,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     crawl = subparsers.add_parser("crawl", help="Run crawl pipeline")
     crawl.add_argument("--policy", default="w3c", help="Policy name")
-    crawl.add_argument("--max-pages", "--maxPages", dest="max_pages", type=int, default=50)
+    crawl.add_argument("--max-pages", "--maxPages", dest="max_pages", type=int, default=None)
 
     subparsers.add_parser("audit", help="Audit crawl outputs")
     return parser
@@ -23,9 +26,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if args.command == "crawl":
+        policy = load_policy(args.policy)
+        result = run_crawl(policy=policy, max_pages=args.max_pages)
         print(
-            f"crawl skeleton: policy={args.policy}, max_pages={args.max_pages}. "
-            "Implementation will be added in next tasks."
+            "crawl completed "
+            f"fetched={result.fetched} no_change={result.no_change} errors={result.errors} "
+            f"manifest={result.manifest_path} log={result.log_path}"
         )
         return 0
 
