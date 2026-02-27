@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import json
 
-from spec_crawler.application.queue import run_crawl
-from spec_crawler.domain.policy import Policy
-from spec_crawler.infrastructure.http.http_client import ResponseData
+from spec_harvester.application.queue import run_crawl
+from spec_harvester.domain.policy import Policy
+from spec_harvester.infrastructure.http.http_client import ResponseData
 
 
 class _AllowAllRobots:

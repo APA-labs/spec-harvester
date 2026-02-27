@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from spec_crawler.domain.url import normalize_url
+from spec_harvester.domain.url import normalize_url
 
 
 @pytest.mark.parametrize(

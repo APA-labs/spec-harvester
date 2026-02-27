@@ -3,7 +3,7 @@ from __future__ import annotations
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
-from spec_crawler.domain.url import normalize_url
+from spec_harvester.domain.url import normalize_url
 
 
 class _AnchorHrefParser(HTMLParser):

@@ -1,3 +1,3 @@
-from spec_crawler.interfaces.cli import build_parser, main
+from spec_harvester.cli import build_parser, main
 
 __all__ = ["build_parser", "main"]

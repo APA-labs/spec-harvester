@@ -4,29 +4,29 @@ This project is organized around domain-first boundaries.
 
 ## Layers
 
-- `src/spec_crawler/domain`
+- `src/spec_harvester/domain`
   - Pure domain concepts and rules.
   - Current modules: `policy.py`, `url.py`, `hashing.py`, `meta.py`.
 
-- `src/spec_crawler/application`
+- `src/spec_harvester/application`
   - Use cases and orchestration logic.
-  - Current modules: `queue.py` (placeholder for crawl flow coordination).
+  - Current modules: `queue.py` (crawl orchestration flow).
 
-- `src/spec_crawler/infrastructure`
+- `src/spec_harvester/infrastructure`
   - External integrations and technical adapters.
   - `config/`: policy file loading (`policy_loader.py`, `policies/*.json`)
   - `http/`: networking concerns (`http_client.py`, `robots.py`, `rate_limit.py`)
   - `parsers/`: content parsing (`links.py`)
   - `storage/`: persistence adapters (`writer.py`, `manifest.py`)
 
-- `src/spec_crawler/interfaces`
+- `src/spec_harvester/interfaces`
   - Entry points for users/systems.
   - Current module: CLI (`cli.py`).
 
 ## Compatibility Notes
 
-- `spec_crawler.cli` remains as a thin wrapper to keep existing command entrypoints stable.
-- `spec_crawler.config` and `spec_crawler.core` re-export public APIs from the new layer layout.
+- `spec_crawler` remains as a thin compatibility package for previous entrypoints.
+- `spec_harvester` is the canonical package namespace.
 
 ## Dependency Direction
 

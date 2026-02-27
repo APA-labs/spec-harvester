@@ -1,4 +1,5 @@
-"""Spec Harvester crawler package."""
+"""Backward compatibility package; canonical package is spec_harvester."""
+
+from spec_harvester import __version__
 
 __all__ = ["__version__"]
-__version__ = "0.1.0"

@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from spec_crawler.domain.policy import PolicyError
-from spec_crawler.infrastructure.config.policy_loader import load_policy
+from spec_harvester.domain.policy import PolicyError
+from spec_harvester.infrastructure.config.policy_loader import load_policy
 
 
 def test_load_policy_success() -> None:
@@ -24,7 +24,7 @@ def test_load_policy_validation_error(monkeypatch: pytest.MonkeyPatch, tmp_path:
         encoding="utf-8",
     )
 
-    monkeypatch.setattr("spec_crawler.infrastructure.config.policy_loader.POLICY_DIR", policies_dir)
+    monkeypatch.setattr("spec_harvester.infrastructure.config.policy_loader.POLICY_DIR", policies_dir)
 
     with pytest.raises(PolicyError):
         load_policy("invalid")
@@ -35,7 +35,7 @@ def test_load_policy_invalid_json(monkeypatch: pytest.MonkeyPatch, tmp_path: Pat
     policies_dir.mkdir()
     (policies_dir / "broken.json").write_text("{not-json", encoding="utf-8")
 
-    monkeypatch.setattr("spec_crawler.infrastructure.config.policy_loader.POLICY_DIR", policies_dir)
+    monkeypatch.setattr("spec_harvester.infrastructure.config.policy_loader.POLICY_DIR", policies_dir)
 
     with pytest.raises(PolicyError):
         load_policy("broken")
