@@ -1,16 +1,17 @@
 {
-  "name": "w3c",
+  "domain": "www.w3.org",
   "seed_urls": [
     "https://www.w3.org/TR/"
-  ],
-  "allowed_domains": [
-    "www.w3.org"
   ],
   "allowed_paths_prefix": [
     "/TR/"
   ],
   "disallowed_paths_prefix": [
-    "/TR/2018/"
+    "/blog/"
   ],
-  "user_agent": "SpecHarvesterBot/0.1"
+  "max_depth": 3,
+  "max_pages": 200,
+  "rate_limit_ms": 700,
+  "user_agent": "SpecHarvesterCrawler/0.1",
+  "respect_robots": true
 }
