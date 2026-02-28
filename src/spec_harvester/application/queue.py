@@ -13,6 +13,15 @@ from spec_harvester.domain.policy import Policy
 from spec_harvester.domain.url import normalize_url
 from spec_harvester.infrastructure.http.http_client import FetchError, ResponseData, fetch
 from spec_harvester.infrastructure.http.robots import RobotsChecker
+from spec_harvester.infrastructure.logging.jsonl import (
+    EVENT_DEDUP_HIT,
+    EVENT_FETCH_ERROR,
+    EVENT_FETCH_SUCCESS,
+    EVENT_RUN_FINISHED,
+    EVENT_RUN_STARTED,
+    EVENT_SAVED,
+    JsonlEventLogger,
+)
 from spec_harvester.infrastructure.parsers.links import extract_links
 from spec_harvester.infrastructure.storage.manifest import should_save
 from spec_harvester.infrastructure.storage.writer import write_document
@@ -27,21 +36,6 @@ class CrawlRunResult:
     visited: int
     manifest_path: Path
     log_path: Path
-
-
-class JsonlLogger:
-    def __init__(self, path: Path) -> None:
-        self.path = path
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-
-    def emit(self, event: str, **fields: object) -> None:
-        row = {
-            "event": event,
-            "ts": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-            **fields,
-        }
-        with self.path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(row, ensure_ascii=True) + "\n")
 
 
 def run_crawl(
@@ -59,9 +53,10 @@ def run_crawl(
     if effective_max_pages <= 0:
         raise ValueError("max_pages must be > 0")
 
-    command_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    # Include microseconds to avoid path collisions for back-to-back runs.
+    command_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     log_path = Path(log_root) / f"run-{command_id}.jsonl"
-    logger = JsonlLogger(log_path)
+    logger = JsonlEventLogger(log_path, base_fields={"command_id": command_id})
 
     manifest_dir = Path(manifest_root)
     manifest_dir.mkdir(parents=True, exist_ok=True)
@@ -69,8 +64,7 @@ def run_crawl(
     url_index_path = manifest_dir / "url_index.json"
 
     logger.emit(
-        "run_started",
-        command_id=command_id,
+        EVENT_RUN_STARTED,
         policy_domain=policy.domain,
         max_pages=effective_max_pages,
     )
@@ -117,7 +111,7 @@ def run_crawl(
         except FetchError as exc:
             errors += 1
             logger.emit(
-                "fetch_error",
+                EVENT_FETCH_ERROR,
                 url=normalized_url,
                 depth=depth,
                 reason=exc.reason,
@@ -138,7 +132,7 @@ def run_crawl(
         except Exception as exc:
             errors += 1
             logger.emit(
-                "fetch_error",
+                EVENT_FETCH_ERROR,
                 url=normalized_url,
                 depth=depth,
                 reason=f"unexpected_error: {exc}",
@@ -158,7 +152,7 @@ def run_crawl(
             continue
 
         logger.emit(
-            "fetch_success",
+            EVENT_FETCH_SUCCESS,
             url=normalized_url,
             depth=depth,
             status=response.status,
@@ -177,7 +171,7 @@ def run_crawl(
 
         if decision == "no_change":
             no_change += 1
-            logger.emit("dedup_hit", url=normalized_url, depth=depth, sha256=sha256)
+            logger.emit(EVENT_DEDUP_HIT, url=normalized_url, depth=depth, sha256=sha256)
             results.append(
                 {
                     "url": normalized_url,
@@ -192,7 +186,7 @@ def run_crawl(
             fetched += 1
             saved = write_document(url=normalized_url, response=response, raw_root=raw_root)
             logger.emit(
-                "saved",
+                EVENT_SAVED,
                 url=normalized_url,
                 depth=depth,
                 raw_path=str(saved.raw_path),
@@ -243,8 +237,7 @@ def run_crawl(
     )
 
     logger.emit(
-        "run_finished",
-        command_id=command_id,
+        EVENT_RUN_FINISHED,
         fetched=fetched,
         no_change=no_change,
         errors=errors,
