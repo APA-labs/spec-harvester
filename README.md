@@ -46,6 +46,19 @@ python -m spec_harvester audit
 python -m spec_harvester audit --manifest-root storage/manifests
 ```
 
+Publish 실행(공유용 번들 생성):
+
+```bash
+# 최신 run 기준
+python -m spec_harvester publish
+
+# 특정 run-id 기준
+python -m spec_harvester publish --run-id 20260228T014916794323Z
+```
+
+생성 결과:
+- `exports/spec-harvester-run-<run_id>.tar.gz`
+
 ## 3) Policy 파일 수정 방법
 
 정책 파일 경로:
