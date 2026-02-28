@@ -25,7 +25,6 @@ This project is organized around domain-first boundaries.
 
 ## Compatibility Notes
 
-- `spec_crawler` remains as a thin compatibility package for previous entrypoints.
 - `spec_harvester` is the canonical package namespace.
 
 ## Dependency Direction
