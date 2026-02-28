@@ -19,12 +19,6 @@ CLI 확인:
 python -m spec_harvester --help
 ```
 
-호환 경로(legacy):
-
-```bash
-python -m spec_crawler --help
-```
-
 ## 2) Crawl 실행 예시
 
 기본 실행:
