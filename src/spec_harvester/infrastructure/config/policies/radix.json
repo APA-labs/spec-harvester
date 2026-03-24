@@ -8,6 +8,12 @@
     "https://www.radix-ui.com/primitives/docs/components/accordion",
     "https://www.radix-ui.com/primitives/docs/components/popover",
     "https://www.radix-ui.com/primitives/docs/components/select",
+    "https://www.radix-ui.com/primitives/docs/components/alert-dialog",
+    "https://www.radix-ui.com/primitives/docs/components/toast",
+    "https://www.radix-ui.com/primitives/docs/components/form",
+    "https://www.radix-ui.com/primitives/docs/components/navigation-menu",
+    "https://www.radix-ui.com/primitives/docs/components/switch",
+    "https://www.radix-ui.com/primitives/docs/components/collapsible",
     "https://www.radix-ui.com/primitives/docs/components/checkbox"
   ],
   "allowed_paths_prefix": ["/primitives/docs/components/"],
