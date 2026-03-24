@@ -23,6 +23,8 @@
 WebFetch로 문서 사이트 컴포넌트 목록 페이지를 조회해 `components.json`의 각 패턴 `keywords`에 해당하는 URL 경로를 찾는다.
 찾은 URL을 사용자에게 보여주고 확인받는다.
 
+해당 DS에 컴포넌트가 존재하지 않으면 `none`으로 기록한다.
+
 ### Step 3 — policy JSON 생성
 
 `src/spec_harvester/infrastructure/config/policies/{ds-id}.json` 파일을 생성한다.
@@ -46,6 +48,8 @@ WebFetch로 문서 사이트 컴포넌트 목록 페이지를 조회해 `compone
 - `max_depth: 1` — seed URL 페이지만 수집
 - `rate_limit_ms: 1000` — 민간 사이트는 1000ms 이상
 - seed_urls와 allowed_paths_prefix를 컴포넌트별로 1:1 매칭
+- `none`인 패턴은 seed_urls에 포함하지 않는다
+- 모든 컴포넌트가 공통 prefix 하위에 있으면 `allowed_paths_prefix`를 단일 prefix로 지정 가능
 
 ### Step 4 — DS 등록 정보 출력
 
@@ -58,15 +62,23 @@ domain: {domain}
 color:  {HEX}
 
 pattern mappings:
-  button       → {url-path-or-none}
-  text-input   → {url-path-or-none}
-  modal-dialog → {url-path-or-none}
-  toggle       → {url-path-or-none}
-  tabs         → {url-path-or-none}
-  tooltip      → {url-path-or-none}
-  disclosure   → {url-path-or-none}
-  accordion    → {url-path-or-none}
-  select       → {url-path-or-none}
+  button           → {url-path-or-none}
+  text-input       → {url-path-or-none}
+  modal-dialog     → {url-path-or-none}
+  toggle           → {url-path-or-none}
+  tabs             → {url-path-or-none}
+  tooltip          → {url-path-or-none}
+  disclosure       → {url-path-or-none}
+  accordion        → {url-path-or-none}
+  select           → {url-path-or-none}
+  alert-toast      → {url-path-or-none}
+  form-validation  → {url-path-or-none}
+  navigation-menu  → {url-path-or-none}
+  pagination       → {url-path-or-none}
+  date-picker      → {url-path-or-none}
+  file-upload      → {url-path-or-none}
+  carousel         → {url-path-or-none}
+  tree             → {url-path-or-none}
 ```
 
 없는 패턴은 `none`으로 표시한다.
