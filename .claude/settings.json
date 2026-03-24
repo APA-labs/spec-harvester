@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"\nimport sys, json\ndata = json.load(sys.stdin)\nfp = data.get('tool_input', {}).get('file_path', '')\nif ('components.json' in fp or '/policies/' in fp) and fp.endswith('.json'):\n    print(json.dumps({'systemMessage': 'spec 변경 감지: components.json 또는 policy 파일이 수정되었습니다. README.md, docs/DDD_ARCHITECTURE.md, CLAUDE.md를 함께 업데이트했는지 확인하세요.'}))\n\"",
+            "statusMessage": "spec 변경 감지 중..."
+          }
+        ]
+      }
+    ]
+  }
+}

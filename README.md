@@ -69,11 +69,11 @@ python -m spec_harvester publish --output-dir exports
 
 | 정책 파일 | 대상 사이트 | 수집 범위 |
 |-----------|-------------|-----------|
-| `w3c` | www.w3.org | W3C 기술 사양 (`/TR/`) |
+| `w3c` | www.w3.org | WAI-ARIA 1.2, HTML-ARIA, AccName 1.2 스펙 |
+| `apg` | www.w3.org | ARIA Authoring Practices Guide 패턴 |
 | `mui` | mui.com | Material UI 컴포넌트 문서 |
 | `radix` | www.radix-ui.com | Radix UI Primitives 컴포넌트 문서 |
 | `antd` | ant.design | Ant Design 컴포넌트 문서 |
-| `apg` | — | ARIA Authoring Practices Guide |
 
 각 정책으로 크롤링:
 
@@ -89,27 +89,40 @@ python -m spec_harvester crawl --policy all
 
 ### 새 디자인시스템 추가하기
 
-1. `src/spec_harvester/infrastructure/config/policies/<이름>.json` 파일 생성:
+수집 대상 컴포넌트 패턴은 프로젝트 루트의 **`components.json`** 에 정의되어 있습니다.
+새 policy의 `seed_urls`와 `allowed_paths_prefix`는 이 파일의 패턴 키워드에 해당하는 URL만 포함합니다.
+
+1. `components.json`을 열어 수집할 패턴 확인
+
+2. `src/spec_harvester/infrastructure/config/policies/<이름>.json` 파일 생성:
 
 ```json
 {
   "domain": "example.com",
-  "seed_urls": ["https://example.com/docs/components/button"],
-  "allowed_paths_prefix": ["/docs/components/"],
+  "seed_urls": [
+    "https://example.com/docs/components/button",
+    "https://example.com/docs/components/dialog"
+  ],
+  "allowed_paths_prefix": [
+    "/docs/components/button",
+    "/docs/components/dialog"
+  ],
   "disallowed_paths_prefix": [],
-  "max_depth": 2,
-  "max_pages": 200,
+  "max_depth": 1,
+  "max_pages": 30,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true
 }
 ```
 
-2. 실행:
+3. 실행:
 
 ```bash
 python -m spec_harvester crawl --policy <이름>
 ```
+
+> **컴포넌트 패턴 추가/변경** 시에는 `components.json`을 먼저 수정하고, 관련 policy 파일과 이 README를 함께 업데이트합니다.
 
 **필드 설명:**
 

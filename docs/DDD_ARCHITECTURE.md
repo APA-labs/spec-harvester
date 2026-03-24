@@ -14,14 +14,20 @@ This project is organized around domain-first boundaries.
 
 - `src/spec_harvester/infrastructure`
   - External integrations and technical adapters.
-  - `config/`: policy file loading (`policy_loader.py`, `policies/*.json`)
+  - `config/`: policy file loading (`policy_loader.py`, `policies/*.json`). Supports `load_all_policies()` for `--policy all`.
   - `http/`: networking concerns (`http_client.py`, `robots.py`, `rate_limit.py`)
   - `parsers/`: content parsing (`links.py`)
-  - `storage/`: persistence adapters (`writer.py`, `manifest.py`)
+  - `storage/`: persistence adapters (`writer.py`, `manifest.py`). Raw files are stored under `storage/raw/YYYY-MM-DD/<domain>/`.
 
 - `src/spec_harvester/interfaces`
   - Entry points for users/systems.
   - Current module: CLI (`cli.py`).
+
+## Component Patterns
+
+Target component patterns are defined in `components.json` at the project root.
+All policy files (`policies/*.json`) must only crawl URLs that correspond to patterns listed there.
+When adding a new design system or modifying crawl scope, consult `components.json` first.
 
 ## Compatibility Notes
 
