@@ -35,6 +35,46 @@
     {
       "id": "select",
       "keywords": ["Select", "Combobox", "Dropdown"]
+    },
+    {
+      "id": "alert-toast",
+      "keywords": ["Alert", "Toast", "Notification", "Snackbar"],
+      "priority": "high"
+    },
+    {
+      "id": "form-validation",
+      "keywords": ["Form", "FormControl", "FormField", "FormItem"],
+      "priority": "high"
+    },
+    {
+      "id": "navigation-menu",
+      "keywords": ["Navigation", "Navbar", "Menu", "MenuBar", "Menubar"],
+      "priority": "medium"
+    },
+    {
+      "id": "pagination",
+      "keywords": ["Pagination"],
+      "priority": "medium"
+    },
+    {
+      "id": "date-picker",
+      "keywords": ["DatePicker", "Calendar", "DateInput", "TimePicker"],
+      "priority": "medium"
+    },
+    {
+      "id": "file-upload",
+      "keywords": ["Upload", "FileUpload", "Dropzone"],
+      "priority": "future"
+    },
+    {
+      "id": "carousel",
+      "keywords": ["Carousel", "Slider", "Swiper"],
+      "priority": "future"
+    },
+    {
+      "id": "tree",
+      "keywords": ["Tree", "TreeView", "TreeItem"],
+      "priority": "future"
     }
   ]
 }
