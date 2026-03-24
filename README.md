@@ -1,140 +1,173 @@
 # Spec Harvester
 
-W3C 문서 수집을 위한 DDD 기반 크롤러입니다.
+W3C 사양 문서 등 기술 명세를 수집하는 DDD 기반 웹 크롤러입니다.
+robots.txt 준수, 요청 속도 제한, SHA256 기반 콘텐츠 중복 제거를 지원합니다.
 
-## 1) 설치
+## 설치
 
-요구사항:
-- Python 3.11+
-
-설치:
+Python 3.11 이상 필요.
 
 ```bash
 python -m pip install -e .
+python -m spec_harvester --help  # 설치 확인
 ```
 
-CLI 확인:
+## 사용법
+
+### crawl — 문서 수집
 
 ```bash
-python -m spec_harvester --help
-```
-
-## 2) Crawl 실행 예시
-
-기본 실행:
-
-```bash
+# w3c 정책으로 최대 10페이지 수집
 python -m spec_harvester crawl --policy w3c --max-pages 10
 ```
 
-실행 결과 예:
-- `storage/raw/YYYY-MM-DD/*.html|*.pdf`
-- `storage/raw/YYYY-MM-DD/*.meta.json`
-- `storage/manifests/run-<id>.json`
-- `storage/manifests/url_index.json`
-- `logs/run-<id>.jsonl`
+| 옵션 | 설명 |
+|------|------|
+| `--policy` | 사용할 정책 이름 (정책 파일명과 일치해야 함) |
+| `--max-pages` | 최대 수집 페이지 수 (정책 파일의 `max_pages`를 덮어씀) |
 
-Audit 실행:
+수집 결과:
+
+```
+storage/raw/YYYY-MM-DD/<sha256>.html|pdf|bin
+storage/raw/YYYY-MM-DD/<sha256>.meta.json
+storage/manifests/run-<id>.json
+storage/manifests/url_index.json
+logs/run-<id>.jsonl
+```
+
+### audit — 수집 결과 검증
 
 ```bash
 python -m spec_harvester audit
-```
-
-특정 manifest 경로로 감사:
-
-```bash
 python -m spec_harvester audit --manifest-root storage/manifests
 ```
 
-Publish 실행(공유용 번들 생성):
+manifest에 기록된 파일의 존재 여부와 SHA256 무결성을 검사하고 보고서를 출력합니다.
+
+### publish — 공유용 번들 생성
 
 ```bash
-# 최신 run 기준
+# 가장 최근 run 기준으로 번들 생성
 python -m spec_harvester publish
 
 # 특정 run-id 기준
 python -m spec_harvester publish --run-id 20260228T014916794323Z
+
+# 출력 디렉터리 지정
+python -m spec_harvester publish --output-dir exports
 ```
 
-생성 결과:
-- `exports/spec-harvester-run-<run_id>.tar.gz`
+`exports/spec-harvester-run-<run_id>.tar.gz` 파일이 생성됩니다.
+번들에는 manifest 파일과 JSONL 로그가 포함됩니다.
 
-## 3) Policy 파일 수정 방법
+## Policy 파일
 
-정책 파일 경로:
-- `src/spec_harvester/infrastructure/config/policies/w3c.json`
+경로: `src/spec_harvester/infrastructure/config/policies/<name>.json`
 
-예시 필드:
+### 기본 제공 Policy
+
+| 정책 파일 | 대상 사이트 | 수집 범위 |
+|-----------|-------------|-----------|
+| `w3c` | www.w3.org | W3C 기술 사양 (`/TR/`) |
+| `mui` | mui.com | Material UI 컴포넌트 문서 |
+| `radix` | www.radix-ui.com | Radix UI Primitives 컴포넌트 문서 |
+| `antd` | ant.design | Ant Design 컴포넌트 문서 |
+| `apg` | — | ARIA Authoring Practices Guide |
+
+각 정책으로 크롤링:
+
+```bash
+python -m spec_harvester crawl --policy w3c
+python -m spec_harvester crawl --policy mui
+python -m spec_harvester crawl --policy radix
+python -m spec_harvester crawl --policy antd
+
+# 전체 정책 순서대로 실행
+python -m spec_harvester crawl --policy all
+```
+
+### 새 디자인시스템 추가하기
+
+1. `src/spec_harvester/infrastructure/config/policies/<이름>.json` 파일 생성:
 
 ```json
 {
-  "domain": "www.w3.org",
-  "seed_urls": ["https://www.w3.org/TR/"],
-  "allowed_paths_prefix": ["/TR/"],
-  "disallowed_paths_prefix": ["/blog/"],
-  "max_depth": 3,
+  "domain": "example.com",
+  "seed_urls": ["https://example.com/docs/components/button"],
+  "allowed_paths_prefix": ["/docs/components/"],
+  "disallowed_paths_prefix": [],
+  "max_depth": 2,
   "max_pages": 200,
-  "rate_limit_ms": 700,
+  "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true
 }
 ```
 
-주의:
-- `domain`은 필수이며 빈 값이면 로드 실패
-- `seed_urls`는 필수이며 비어 있으면 로드 실패
+2. 실행:
 
-## 4) 저장 구조 설명
+```bash
+python -m spec_harvester crawl --policy <이름>
+```
 
-```text
+**필드 설명:**
+
+| 필드 | 필수 | 설명 |
+|------|------|------|
+| `domain` | ✅ | 크롤링 대상 도메인 (이 도메인 외 링크는 무시) |
+| `seed_urls` | ✅ | 크롤링 시작 URL 목록 |
+| `allowed_paths_prefix` | — | 허용할 경로 prefix 목록 (빈 배열이면 전체 허용) |
+| `disallowed_paths_prefix` | — | 제외할 경로 prefix 목록 |
+| `max_depth` | — | seed URL 기준 최대 링크 탐색 깊이 |
+| `max_pages` | — | 최대 수집 페이지 수 |
+| `rate_limit_ms` | — | 요청 간격 (밀리초) |
+| `respect_robots` | — | robots.txt 준수 여부 |
+
+## 저장 구조
+
+```
 storage/
   raw/
     YYYY-MM-DD/
-      <sha256>.html | <sha256>.pdf | <sha256>.bin
-      <sha256>.meta.json
+      <domain>/
+        <sha256>.html | <sha256>.pdf | <sha256>.bin   # 수집된 원본 파일
+        <sha256>.meta.json                             # URL, 상태코드, 헤더 등 메타데이터
   manifests/
-    run-<command_id>.json
-    url_index.json
+    run-<id>.json       # 해당 run에서 수집된 URL 목록
+    url_index.json      # 전체 URL → 파일 매핑 인덱스
 
 logs/
-  run-<command_id>.jsonl
+  run-<id>.jsonl        # run_started / fetch_success / fetch_error / saved / dedup_hit / run_finished
 ```
 
-`meta.json` 주요 필드:
-- `url`, `fetched_at`, `status`, `content_type`
-- `sha256`, `bytes`
-- `headers.etag`, `headers.last-modified`
-- `final_url`
+`meta.json` 주요 필드: `url`, `fetched_at`, `status`, `content_type`, `sha256`, `bytes`, `final_url`, `headers.etag`, `headers.last-modified`
 
-## 5) 흔한 에러와 해결
+## 트러블슈팅
 
-1. `No module named spec_harvester`
-- 원인: 패키지 설치 전 실행
-- 해결: `python -m pip install -e .`
+**`No module named spec_harvester`**
+→ `python -m pip install -e .` 실행
 
-2. `policy file not found`
-- 원인: `--policy` 이름과 JSON 파일명 불일치
-- 해결: 예) `--policy w3c`면 `w3c.json`이 존재해야 함
+**`policy file not found`**
+→ `--policy w3c` 지정 시 `w3c.json`이 policies 폴더에 있어야 함
 
-3. `domain must be a non-empty string` / `seed_urls must not be empty`
-- 원인: policy 필수 필드 누락/오입력
-- 해결: 정책 파일 값 보완
+**`domain must be a non-empty string` / `seed_urls must not be empty`**
+→ policy 파일에서 필수 필드 확인
 
-4. 수집 실패(`fetch_error`)가 반복됨
-- 원인: 네트워크/DNS/대상 서버 문제
-- 해결: `logs/run-*.jsonl`에서 `fetch_error` 원인 확인 후 재시도
+**두 번째 실행에서 파일이 저장되지 않음**
+→ 정상 동작. ETag / Last-Modified / SHA256이 동일하면 `no_change`로 처리됨
+→ `audit` 명령으로 현황 확인
 
-5. 두 번째 실행에서 저장이 안 됨
-- 정상 동작일 수 있음: ETag/Last-Modified/sha256 기반 `no_change` 감지
-- 확인: `storage/manifests/url_index.json`, `audit` 결과
+**`fetch_error`가 반복됨**
+→ `logs/run-*.jsonl`에서 이벤트 타입이 `fetch_error`인 항목의 `reason` 필드 확인
 
-## 6) 아키텍처
+## 아키텍처
 
-DDD 레이어 구조:
-- `src/spec_harvester/domain`
-- `src/spec_harvester/application`
-- `src/spec_harvester/infrastructure`
-- `src/spec_harvester/interfaces`
+DDD 레이어 구조 (`interfaces → application → domain`, infrastructure는 주입):
 
-상세 문서:
-- `docs/DDD_ARCHITECTURE.md`
+- `domain/` — URL 정규화, 해싱, 메타데이터 모델 (외부 의존성 없음)
+- `application/` — BFS 크롤 오케스트레이터, audit, publish 유스케이스
+- `infrastructure/` — HTTP 클라이언트, robots.txt, 속도 제한, 파일 저장, JSONL 로깅
+- `interfaces/` — CLI 진입점
+
+상세 문서: [`docs/DDD_ARCHITECTURE.md`](docs/DDD_ARCHITECTURE.md)
