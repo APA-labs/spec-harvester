@@ -36,6 +36,18 @@ storage/manifests/url_index.json
 logs/run-<id>.jsonl
 ```
 
+### reset — 재크롤링을 위한 초기화
+
+```bash
+# url_index만 초기화 (파일은 유지, 다음 crawl 시 전체 재수집)
+python -m spec_harvester reset
+
+# url_index + raw 파일 모두 삭제
+python -m spec_harvester reset --storage
+```
+
+url_index.json은 ETag/SHA256 기반 중복 체크에 사용됩니다. 파일이 삭제됐는데 crawl이 `no_change`만 반환할 때 실행하세요.
+
 ### audit — 수집 결과 검증
 
 ```bash

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import argparse
+import shutil
+from pathlib import Path
 
 from spec_harvester.application.audit import render_audit_report, run_audit
 from spec_harvester.application.publish import build_publish_bundle
@@ -21,6 +23,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     audit = subparsers.add_parser("audit", help="Audit crawl outputs")
     audit.add_argument("--manifest-root", default="storage/manifests")
+
+    reset = subparsers.add_parser("reset", help="Reset url_index to force re-crawl")
+    reset.add_argument("--manifest-root", default="storage/manifests")
+    reset.add_argument("--storage", action="store_true", help="Also delete raw storage files")
+    reset.add_argument("--raw-root", default="storage/raw")
 
     publish = subparsers.add_parser("publish", help="Bundle crawl artifacts for sharing")
     publish.add_argument("--run-id", default=None, help="Run command id (omit to use latest)")
@@ -44,6 +51,23 @@ def main(argv: list[str] | None = None) -> int:
                 f"fetched={result.fetched} no_change={result.no_change} errors={result.errors} "
                 f"manifest={result.manifest_path} log={result.log_path}"
             )
+        return 0
+
+    if args.command == "reset":
+        url_index = Path(args.manifest_root) / "url_index.json"
+        if url_index.exists():
+            url_index.write_text("{}", encoding="utf-8")
+            print(f"reset: cleared {url_index}")
+        else:
+            print(f"reset: {url_index} not found, nothing to clear")
+        if args.storage:
+            raw_root = Path(args.raw_root)
+            if raw_root.exists():
+                shutil.rmtree(raw_root)
+                raw_root.mkdir(parents=True, exist_ok=True)
+                print(f"reset: cleared {raw_root}")
+            else:
+                print(f"reset: {raw_root} not found, nothing to clear")
         return 0
 
     if args.command == "audit":
