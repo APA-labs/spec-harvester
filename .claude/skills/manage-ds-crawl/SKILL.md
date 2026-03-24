@@ -19,6 +19,7 @@
    - 컴포넌트 제거
 
 컴포넌트 URL이 불분명하면 WebFetch로 해당 DS 문서 사이트를 조회해 확인한다.
+컴포넌트 추가 시 프로젝트 루트의 `components.json`에 정의된 패턴 목록을 기준으로 한다. 패턴에 없는 컴포넌트는 사용자에게 `components.json` 업데이트 여부를 먼저 확인한다.
 
 ### Step 2 — policy JSON 수정
 

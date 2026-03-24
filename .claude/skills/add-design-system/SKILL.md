@@ -18,20 +18,10 @@
 
 ### Step 2 — 컴포넌트 URL 조사
 
-WebFetch로 문서 사이트 컴포넌트 목록 페이지를 조회해 아래 패턴에 해당하는 URL 경로를 찾는다.
-찾은 URL을 사용자에게 보여주고 확인받는다.
+수집 대상 컴포넌트 패턴은 프로젝트 루트의 `components.json`에 정의되어 있다. 반드시 이 파일을 읽어 패턴 목록을 확인한 뒤 진행한다.
 
-| 패턴 ID      | 찾을 컴포넌트 키워드            |
-| ------------ | ------------------------------- |
-| button       | Button, IconButton              |
-| text-input   | Input, TextField, TextInput     |
-| modal-dialog | Modal, Dialog, Drawer           |
-| toggle       | Switch, Toggle, ToggleButton    |
-| tabs         | Tabs, TabList                   |
-| tooltip      | Tooltip, Popover                |
-| disclosure   | Accordion, Collapse, Disclosure |
-| accordion    | Accordion, Collapse             |
-| select       | Select, Combobox, Dropdown      |
+WebFetch로 문서 사이트 컴포넌트 목록 페이지를 조회해 `components.json`의 각 패턴 `keywords`에 해당하는 URL 경로를 찾는다.
+찾은 URL을 사용자에게 보여주고 확인받는다.
 
 ### Step 3 — policy JSON 생성
 
