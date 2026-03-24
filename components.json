@@ -1,0 +1,40 @@
+{
+  "patterns": [
+    {
+      "id": "button",
+      "keywords": ["Button", "IconButton"]
+    },
+    {
+      "id": "text-input",
+      "keywords": ["Input", "TextField", "TextInput"]
+    },
+    {
+      "id": "modal-dialog",
+      "keywords": ["Modal", "Dialog", "Drawer"]
+    },
+    {
+      "id": "toggle",
+      "keywords": ["Switch", "Toggle", "ToggleButton"]
+    },
+    {
+      "id": "tabs",
+      "keywords": ["Tabs", "TabList"]
+    },
+    {
+      "id": "tooltip",
+      "keywords": ["Tooltip", "Popover"]
+    },
+    {
+      "id": "disclosure",
+      "keywords": ["Accordion", "Collapse", "Disclosure"]
+    },
+    {
+      "id": "accordion",
+      "keywords": ["Accordion", "Collapse"]
+    },
+    {
+      "id": "select",
+      "keywords": ["Select", "Combobox", "Dropdown"]
+    }
+  ]
+}

@@ -50,3 +50,29 @@ exports/spec-harvester-run-<id>.tar.gz            # published bundles
 ### JSONL Log Events
 
 Events: `run_started`, `fetch_success`, `fetch_error`, `saved`, `dedup_hit`, `run_finished`
+
+## Component Patterns
+
+수집 대상 컴포넌트 패턴은 `components.json`(프로젝트 루트)에 정의되어 있다.
+새 디자인시스템 policy를 만들거나 수집 범위를 판단할 때 이 목록을 기준으로 한다.
+
+| id | 해당하는 컴포넌트 키워드 |
+|----|--------------------------|
+| `button` | Button, IconButton |
+| `text-input` | Input, TextField, TextInput |
+| `modal-dialog` | Modal, Dialog, Drawer |
+| `toggle` | Switch, Toggle, ToggleButton |
+| `tabs` | Tabs, TabList |
+| `tooltip` | Tooltip, Popover |
+| `disclosure` | Accordion, Collapse, Disclosure |
+| `accordion` | Accordion, Collapse |
+| `select` | Select, Combobox, Dropdown |
+
+- 새 디자인시스템 policy의 `seed_urls`와 `allowed_paths_prefix`는 이 9개 패턴에 해당하는 URL만 포함한다.
+- W3C(`w3c.json`)와 APG(`apg.json`)도 이 패턴들의 ARIA 스펙 범위로 제한되어 있다.
+
+## Git Workflow
+
+- Branch naming: `codex/` prefix
+- Flow: main → new branch → implement → commit → PR → merge → main
+- Destructive git commands require explicit user approval
