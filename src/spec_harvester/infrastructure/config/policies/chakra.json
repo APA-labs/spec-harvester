@@ -1,0 +1,30 @@
+{
+  "domain": "www.chakra-ui.com",
+  "seed_urls": [
+    "https://www.chakra-ui.com/docs/components/button",
+    "https://www.chakra-ui.com/docs/components/input",
+    "https://www.chakra-ui.com/docs/components/dialog",
+    "https://www.chakra-ui.com/docs/components/drawer",
+    "https://www.chakra-ui.com/docs/components/switch",
+    "https://www.chakra-ui.com/docs/components/tabs",
+    "https://www.chakra-ui.com/docs/components/tooltip",
+    "https://www.chakra-ui.com/docs/components/popover",
+    "https://www.chakra-ui.com/docs/components/accordion",
+    "https://www.chakra-ui.com/docs/components/select",
+    "https://www.chakra-ui.com/docs/components/combobox",
+    "https://www.chakra-ui.com/docs/components/alert",
+    "https://www.chakra-ui.com/docs/components/toaster",
+    "https://www.chakra-ui.com/docs/components/field",
+    "https://www.chakra-ui.com/docs/components/menu",
+    "https://www.chakra-ui.com/docs/components/pagination",
+    "https://www.chakra-ui.com/docs/components/date-picker",
+    "https://www.chakra-ui.com/docs/components/file-upload"
+  ],
+  "allowed_paths_prefix": ["/docs/components/"],
+  "disallowed_paths_prefix": [],
+  "max_depth": 1,
+  "max_pages": 20,
+  "rate_limit_ms": 1000,
+  "user_agent": "SpecHarvesterCrawler/0.1",
+  "respect_robots": true
+}
