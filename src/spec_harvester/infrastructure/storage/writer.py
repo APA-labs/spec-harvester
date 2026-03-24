@@ -4,6 +4,7 @@ import json
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 from spec_harvester.domain.hashing import sha256_hexdigest
 from spec_harvester.domain.meta import DocumentMeta
@@ -30,7 +31,8 @@ def write_document(
         fetched_at = fetched_at.replace(tzinfo=timezone.utc)
 
     fetched_at_utc = fetched_at.astimezone(timezone.utc)
-    day_dir = Path(raw_root) / fetched_at_utc.date().isoformat()
+    domain = urlparse(url).netloc or "unknown"
+    day_dir = Path(raw_root) / fetched_at_utc.date().isoformat() / domain
     day_dir.mkdir(parents=True, exist_ok=True)
 
     sha256 = sha256_hexdigest(response.body)
