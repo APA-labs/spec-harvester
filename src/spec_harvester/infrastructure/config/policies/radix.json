@@ -1,0 +1,20 @@
+{
+  "domain": "www.radix-ui.com",
+  "seed_urls": [
+    "https://www.radix-ui.com/primitives/docs/components/dialog",
+    "https://www.radix-ui.com/primitives/docs/components/tabs",
+    "https://www.radix-ui.com/primitives/docs/components/tooltip",
+    "https://www.radix-ui.com/primitives/docs/components/toggle",
+    "https://www.radix-ui.com/primitives/docs/components/accordion",
+    "https://www.radix-ui.com/primitives/docs/components/popover",
+    "https://www.radix-ui.com/primitives/docs/components/select",
+    "https://www.radix-ui.com/primitives/docs/components/checkbox"
+  ],
+  "allowed_paths_prefix": ["/primitives/docs/components/"],
+  "disallowed_paths_prefix": [],
+  "max_depth": 1,
+  "max_pages": 20,
+  "rate_limit_ms": 1000,
+  "user_agent": "SpecHarvesterCrawler/0.1",
+  "respect_robots": true
+}

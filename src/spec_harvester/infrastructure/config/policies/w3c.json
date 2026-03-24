@@ -9,8 +9,8 @@
   "disallowed_paths_prefix": [
     "/blog/"
   ],
-  "max_depth": 3,
-  "max_pages": 200,
+  "max_depth": 5,
+  "max_pages": 10000,
   "rate_limit_ms": 700,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true

@@ -1,0 +1,29 @@
+{
+  "domain": "mui.com",
+  "seed_urls": [
+    "https://mui.com/material-ui/react-button/",
+    "https://mui.com/material-ui/react-text-field/",
+    "https://mui.com/material-ui/react-dialog/",
+    "https://mui.com/material-ui/react-toggle-button/",
+    "https://mui.com/material-ui/react-tabs/",
+    "https://mui.com/material-ui/react-tooltip/",
+    "https://mui.com/material-ui/react-accordion/",
+    "https://mui.com/material-ui/react-select/"
+  ],
+  "allowed_paths_prefix": [
+    "/material-ui/react-button/",
+    "/material-ui/react-text-field/",
+    "/material-ui/react-dialog/",
+    "/material-ui/react-toggle-button/",
+    "/material-ui/react-tabs/",
+    "/material-ui/react-tooltip/",
+    "/material-ui/react-accordion/",
+    "/material-ui/react-select/"
+  ],
+  "disallowed_paths_prefix": [],
+  "max_depth": 1,
+  "max_pages": 20,
+  "rate_limit_ms": 1000,
+  "user_agent": "SpecHarvesterCrawler/0.1",
+  "respect_robots": true
+}

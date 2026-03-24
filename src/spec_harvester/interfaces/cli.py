@@ -5,7 +5,7 @@ import argparse
 from spec_harvester.application.audit import render_audit_report, run_audit
 from spec_harvester.application.publish import build_publish_bundle
 from spec_harvester.application.queue import run_crawl
-from spec_harvester.infrastructure.config.policy_loader import load_policy
+from spec_harvester.infrastructure.config.policy_loader import load_all_policies, load_policy
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -36,13 +36,14 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if args.command == "crawl":
-        policy = load_policy(args.policy)
-        result = run_crawl(policy=policy, max_pages=args.max_pages)
-        print(
-            "crawl completed "
-            f"fetched={result.fetched} no_change={result.no_change} errors={result.errors} "
-            f"manifest={result.manifest_path} log={result.log_path}"
-        )
+        policies = load_all_policies() if args.policy == "all" else [load_policy(args.policy)]
+        for policy in policies:
+            result = run_crawl(policy=policy, max_pages=args.max_pages)
+            print(
+                f"crawl completed [{policy.domain}] "
+                f"fetched={result.fetched} no_change={result.no_change} errors={result.errors} "
+                f"manifest={result.manifest_path} log={result.log_path}"
+            )
         return 0
 
     if args.command == "audit":

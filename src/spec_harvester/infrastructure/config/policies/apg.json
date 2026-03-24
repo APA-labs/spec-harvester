@@ -1,0 +1,11 @@
+{
+  "domain": "www.w3.org",
+  "seed_urls": ["https://www.w3.org/WAI/ARIA/apg/patterns/"],
+  "allowed_paths_prefix": ["/WAI/ARIA/apg/patterns/"],
+  "disallowed_paths_prefix": ["/WAI/ARIA/apg/patterns/landmarks/"],
+  "max_depth": 2,
+  "max_pages": 60,
+  "rate_limit_ms": 700,
+  "user_agent": "SpecHarvesterCrawler/0.1",
+  "respect_robots": true
+}

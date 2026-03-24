@@ -70,6 +70,10 @@ def _from_dict(data: dict[str, object]) -> Policy:
     )
 
 
+def load_all_policies() -> list[Policy]:
+    return [load_policy(p.stem) for p in sorted(POLICY_DIR.glob("*.json"))]
+
+
 def load_policy(name: str) -> Policy:
     policy_name = _validate_non_empty_string(name, "name")
     policy_path = POLICY_DIR / f"{policy_name}.json"

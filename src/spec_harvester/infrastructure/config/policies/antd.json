@@ -1,0 +1,31 @@
+{
+  "domain": "ant.design",
+  "seed_urls": [
+    "https://ant.design/components/button/",
+    "https://ant.design/components/input/",
+    "https://ant.design/components/modal/",
+    "https://ant.design/components/switch/",
+    "https://ant.design/components/tabs/",
+    "https://ant.design/components/tooltip/",
+    "https://ant.design/components/collapse/",
+    "https://ant.design/components/select/",
+    "https://ant.design/components/form/"
+  ],
+  "allowed_paths_prefix": [
+    "/components/button/",
+    "/components/input/",
+    "/components/modal/",
+    "/components/switch/",
+    "/components/tabs/",
+    "/components/tooltip/",
+    "/components/collapse/",
+    "/components/select/",
+    "/components/form/"
+  ],
+  "disallowed_paths_prefix": [],
+  "max_depth": 1,
+  "max_pages": 20,
+  "rate_limit_ms": 1000,
+  "user_agent": "SpecHarvesterCrawler/0.1",
+  "respect_robots": true
+}
