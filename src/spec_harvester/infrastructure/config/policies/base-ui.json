@@ -1,0 +1,28 @@
+{
+  "domain": "base-ui.com",
+  "seed_urls": [
+    "https://base-ui.com/react/components/button",
+    "https://base-ui.com/react/components/input",
+    "https://base-ui.com/react/components/dialog",
+    "https://base-ui.com/react/components/alert-dialog",
+    "https://base-ui.com/react/components/switch",
+    "https://base-ui.com/react/components/toggle",
+    "https://base-ui.com/react/components/toggle-group",
+    "https://base-ui.com/react/components/tabs",
+    "https://base-ui.com/react/components/tooltip",
+    "https://base-ui.com/react/components/popover",
+    "https://base-ui.com/react/components/accordion",
+    "https://base-ui.com/react/components/collapsible",
+    "https://base-ui.com/react/components/select",
+    "https://base-ui.com/react/components/toast",
+    "https://base-ui.com/react/components/field",
+    "https://base-ui.com/react/components/navigation-menu"
+  ],
+  "allowed_paths_prefix": ["/react/components/"],
+  "disallowed_paths_prefix": [],
+  "max_depth": 1,
+  "max_pages": 20,
+  "rate_limit_ms": 1000,
+  "user_agent": "SpecHarvesterCrawler/0.1",
+  "respect_robots": true
+}
