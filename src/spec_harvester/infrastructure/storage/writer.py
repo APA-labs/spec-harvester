@@ -63,6 +63,8 @@ def write_document(
 
 def _extension_for_content_type(content_type: str) -> str:
     normalized = content_type.lower().split(";", 1)[0].strip()
+    if normalized == "text/markdown":
+        return "md"
     if normalized == "text/html" or normalized == "application/xhtml+xml":
         return "html"
     if normalized == "application/pdf":

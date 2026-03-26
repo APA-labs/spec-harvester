@@ -48,6 +48,7 @@ def run_crawl(
     fetch_fn: Callable[[str], ResponseData] | None = None,
     robots_checker: RobotsChecker | None = None,
     sleeper: Callable[[float], None] = time.sleep,
+    as_markdown: bool = False,
 ) -> CrawlRunResult:
     effective_max_pages = max_pages if max_pages is not None else policy.max_pages
     if effective_max_pages <= 0:
@@ -184,6 +185,27 @@ def run_crawl(
             )
         else:
             fetched += 1
+            if as_markdown and response.content_type.lower().split(";", 1)[0].strip() in {
+                "text/html",
+                "application/xhtml+xml",
+            }:
+                from bs4 import BeautifulSoup  # noqa: PLC0415
+                from markdownify import markdownify as md  # noqa: PLC0415
+
+                raw_html = response.body.decode("utf-8", errors="ignore")
+                soup = BeautifulSoup(raw_html, "lxml")
+                for tag in soup(["script", "style", "noscript", "svg"]):
+                    tag.decompose()
+                markdown_text = md(str(soup), heading_style="ATX")
+                markdown_text = _clean_markdown(markdown_text)
+                response = ResponseData(
+                    status=response.status,
+                    headers=response.headers,
+                    body=markdown_text.encode("utf-8"),
+                    final_url=response.final_url,
+                    content_type="text/markdown",
+                    duration_ms=response.duration_ms,
+                )
             saved = write_document(url=normalized_url, response=response, raw_root=raw_root)
             logger.emit(
                 EVENT_SAVED,
@@ -254,3 +276,22 @@ def run_crawl(
         manifest_path=run_manifest_path,
         log_path=log_path,
     )
+
+
+def _clean_markdown(text: str) -> str:
+    import re
+
+    lines = text.splitlines()
+    cleaned = []
+    for line in lines:
+        # Drop lines that are clearly noise: minified CSS/JS blobs or Next.js flight data.
+        # Heuristic: line is longer than 500 chars and has fewer than 10% space characters.
+        if len(line) > 500:
+            space_ratio = line.count(" ") / len(line)
+            if space_ratio < 0.10:
+                continue
+        cleaned.append(line)
+
+    # Collapse runs of more than one blank line into a single blank line.
+    collapsed = re.sub(r"\n{3,}", "\n\n", "\n".join(cleaned))
+    return collapsed.strip() + "\n"
