@@ -46,6 +46,18 @@
   > a11y 레포 Claude Code 세션에서 `/register-design-system` 을 실행하고
   > 변경된 URL 매핑을 알려주세요.
 
+#### A-4. 마크다운 포맷팅 확인
+
+크롤이 끝난 뒤, 저장된 `.md` 파일을 샘플로 하나 열어 다음을 확인한다:
+
+1. **노이즈 라인 제거 여부** — 첫 줄에 CSS blob(`{...}`)이나 마지막에 `self.__next_f` 같은 JS 런타임 데이터가 없는지
+2. **최대 줄 길이** — 500자를 넘는 줄이 없는지 (`max line length` 값 확인)
+3. **빈 줄 밀도** — 연속 빈 줄이 2줄 이상 반복되지 않는지
+
+문제가 발견되면 `src/spec_harvester/application/queue.py`의 `_clean_markdown` 함수를 수정한다:
+- CSS/JS 노이즈: 줄 길이 임계값(`500`) 또는 공백 비율 임계값(`0.10`) 조정
+- 연속 빈 줄: `re.sub(r"\n{3,}", ...)` 패턴 조정
+
 ---
 
 ### 모드 B — 전체 동기화 (components.json → 모든 policy)
@@ -95,3 +107,15 @@ for p in radix mui antd shadcn chakra react-aria; do
   python -m spec_harvester crawl --policy $p
 done
 ```
+
+#### B-5. 마크다운 포맷팅 확인
+
+크롤이 끝난 뒤, DS별로 `.md` 파일을 샘플로 하나씩 열어 다음을 확인한다:
+
+1. **노이즈 라인 제거 여부** — 첫 줄에 CSS blob(`{...}`)이나 마지막에 `self.__next_f` 같은 JS 런타임 데이터가 없는지
+2. **최대 줄 길이** — 500자를 넘는 줄이 없는지 (`max line length` 값 확인)
+3. **빈 줄 밀도** — 연속 빈 줄이 2줄 이상 반복되지 않는지
+
+문제가 발견되면 `src/spec_harvester/application/queue.py`의 `_clean_markdown` 함수를 수정한다:
+- CSS/JS 노이즈: 줄 길이 임계값(`500`) 또는 공백 비율 임계값(`0.10`) 조정
+- 연속 빈 줄: `re.sub(r"\n{3,}", ...)` 패턴 조정
