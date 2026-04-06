@@ -95,5 +95,5 @@ python -m spec_harvester crawl --policy {ds-id}
 
 **2. a11y 레포에서 트랜스포머 등록:**
 
-> a11y 레포 Cursor 세션에서 `/register-design-system` 을 실행하고
+> a11y 레포 agent 세션에서 `/register-design-system` 을 실행하고
 > 위의 DS 등록 정보를 붙여넣으세요.
