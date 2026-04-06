@@ -43,7 +43,7 @@
 - 수정된 파일과 변경 내용 요약
 - 크롤 재실행 명령어: `python -m spec_harvester crawl --policy {ds-id}`
 - URL 변경이 있었다면 a11y 레포의 `SOURCE_URL_MAP`도 업데이트 필요함을 알린다
-  > a11y 레포 Claude Code 세션에서 `/register-design-system` 을 실행하고
+  > a11y 레포 Cursor 세션에서 `/register-design-system` 을 실행하고
   > 변경된 URL 매핑을 알려주세요.
 
 #### A-4. 마크다운 포맷팅 확인

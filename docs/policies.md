@@ -30,13 +30,13 @@ python -m spec_harvester crawl --policy all    # 전체
 
 ## Policy 수정 (기존 DS)
 
-Claude Code 세션에서 `/manage-ds-crawl` 스킬 실행.
+Cursor 세션에서 `/manage-ds-crawl` 스킬 실행.
 
 URL이 바뀌었거나 새 컴포넌트를 추가할 때 `seed_urls`와 `allowed_paths_prefix`를 동시에 업데이트한다.
 
 ## 새 DS Policy 추가
 
-Claude Code 세션에서 `/add-design-system` 스킬 실행.
+Cursor 세션에서 `/add-design-system` 스킬 실행.
 
 실행 결과로 출력되는 DS 등록 정보를 **a11y 레포의 `/register-design-system`** 에 붙여넣어야 트랜스포머에도 반영된다.
 
