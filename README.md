@@ -1,6 +1,6 @@
 # Spec Harvester
 
-접근성 관련 기술 문서를 크롤링해 로컬에 저장하는 DDD 기반 Python 도구입니다.
+접근성 관련 기술 문서를 크롤링해 로컬에 저장하는 Python 도구입니다.
 W3C ARIA APG 패턴 스펙과 주요 디자인 시스템(MUI, Radix, Ant Design)의 컴포넌트 접근성 문서를 수집합니다.
 robots.txt 준수, 요청 속도 제한, SHA256 기반 콘텐츠 중복 제거를 지원합니다.
 
@@ -207,7 +207,7 @@ logs/
 
 ## 아키텍처
 
-DDD 레이어 구조 (`interfaces → application → domain`, infrastructure는 주입):
+레이어 구조 (`interfaces → application → domain`, infrastructure는 주입):
 
 - `domain/` — URL 정규화, 해싱, 메타데이터 모델 (외부 의존성 없음)
 - `application/` — BFS 크롤 오케스트레이터, audit, publish 유스케이스
@@ -220,4 +220,4 @@ DDD 레이어 구조 (`interfaces → application → domain`, infrastructure는
 - [`docs/domain-concepts.md`](docs/domain-concepts.md) — Policy, FetchMeta, 해싱, BFS 큐
 - [`docs/output-format.md`](docs/output-format.md) — storage/ 구조, meta.json 스키마
 - [`docs/policies.md`](docs/policies.md) — 현재 policy 목록, 추가 방법
-- [`docs/DDD_ARCHITECTURE.md`](docs/DDD_ARCHITECTURE.md) — 레이어 구조
+- [`docs/architecture.md`](docs/architecture.md) — 레이어 구조

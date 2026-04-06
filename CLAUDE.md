@@ -27,7 +27,7 @@ python -m spec_harvester publish --run-id <run_id> --output-dir exports
 
 ## Architecture
 
-The project follows DDD layered architecture. Dependency rule: `interfaces → application → domain`; infrastructure is injected in, never imported by domain.
+Dependency rule: `interfaces → application → domain`; infrastructure is injected in, never imported by domain.
 
 ### Layers
 

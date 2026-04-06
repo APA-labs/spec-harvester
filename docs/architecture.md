@@ -1,4 +1,4 @@
-# DDD-Oriented Package Layout
+# Package Layout
 
 This project is organized around domain-first boundaries.
 
