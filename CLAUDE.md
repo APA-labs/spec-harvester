@@ -81,6 +81,6 @@ Events: `run_started`, `fetch_success`, `fetch_error`, `saved`, `dedup_hit`, `ru
 
 ## Git Workflow
 
-- Branch naming: `cursor/` prefix
+- Branch naming: `feature/` prefix
 - Flow: main → new branch → implement → commit → PR → merge → main
 - Destructive git commands require explicit user approval
