@@ -38,4 +38,4 @@ python -m spec_harvester crawl --policy antd
 - [도메인 개념](domain-concepts.md) — Policy, FetchMeta, 해싱, BFS 큐
 - [출력 형식](output-format.md) — storage/ 구조, meta.json 스키마
 - [Policy 관리](policies.md) — 현재 policy 목록, 추가 방법
-- [DDD 아키텍처](DDD_ARCHITECTURE.md) — 레이어 구조
+- [아키텍처](architecture.md) — 레이어 구조
