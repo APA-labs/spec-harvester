@@ -1,7 +1,19 @@
 # Spec Harvester
 
-W3C 사양 문서 등 기술 명세를 수집하는 DDD 기반 웹 크롤러입니다.
+접근성 관련 기술 문서를 크롤링해 로컬에 저장하는 DDD 기반 Python 도구입니다.
+W3C ARIA APG 패턴 스펙과 주요 디자인 시스템(MUI, Radix, Ant Design)의 컴포넌트 접근성 문서를 수집합니다.
 robots.txt 준수, 요청 속도 제한, SHA256 기반 콘텐츠 중복 제거를 지원합니다.
+
+## 파이프라인에서의 위치
+
+```
+spec-harvester           spec-transformer (a11y 레포)      backend
+(이 레포)             →   tools/spec-transformer/       →   packages/backend/src/rules/
+ W3C + DS 문서 크롤        Claude API로 rule 추출             런타임에 Claude 컨텍스트로 사용
+ → storage/raw/            → *.json, patterns.ts
+```
+
+크롤 결과는 원본 HTML 파일로 저장되고, a11y 모노레포의 `spec-transformer`가 Claude API를 통해 구조화된 rule JSON으로 변환합니다.
 
 ## 설치
 
@@ -12,12 +24,19 @@ python -m pip install -e .
 python -m spec_harvester --help  # 설치 확인
 ```
 
+## 실행 주기
+
+분기 1회 수동 실행. W3C 스펙이나 DS 문서가 크게 바뀌었을 때 재실행합니다.
+
 ## 사용법
 
 ### crawl — 문서 수집
 
 ```bash
-# w3c 정책으로 최대 10페이지 수집
+# apg 정책으로 크롤 (ARIA APG 패턴 스펙)
+python -m spec_harvester crawl --policy apg
+
+# 특정 정책으로 최대 10페이지 수집
 python -m spec_harvester crawl --policy w3c --max-pages 10
 ```
 
@@ -79,18 +98,18 @@ python -m spec_harvester publish --output-dir exports
 
 ### 기본 제공 Policy
 
-| 정책 파일 | 대상 사이트 | 수집 범위 |
-|-----------|-------------|-----------|
-| `w3c` | www.w3.org | WAI-ARIA 1.2, HTML-ARIA, AccName 1.2 스펙 |
-| `apg` | www.w3.org | ARIA Authoring Practices Guide 패턴 |
-| `mui` | mui.com | Material UI 컴포넌트 문서 |
-| `radix` | www.radix-ui.com | Radix UI Primitives 컴포넌트 문서 |
-| `antd` | ant.design | Ant Design 컴포넌트 문서 |
+| 정책 파일 | 대상 사이트 | 수집 범위 | 비고 |
+|-----------|-------------|-----------|------|
+| `apg` | www.w3.org | W3C ARIA APG 패턴 스펙 | **접근성 규칙 추출의 주 소스** |
+| `w3c` | www.w3.org | WAI-ARIA 1.2, HTML-ARIA, AccName 1.2 스펙 | 레거시 (CSS 등 포함) |
+| `mui` | mui.com | Material UI 컴포넌트 문서 | |
+| `radix` | www.radix-ui.com | Radix UI Primitives 컴포넌트 문서 | |
+| `antd` | ant.design | Ant Design 컴포넌트 문서 | |
 
 각 정책으로 크롤링:
 
 ```bash
-python -m spec_harvester crawl --policy w3c
+python -m spec_harvester crawl --policy apg    # W3C ARIA APG (주 소스)
 python -m spec_harvester crawl --policy mui
 python -m spec_harvester crawl --policy radix
 python -m spec_harvester crawl --policy antd
@@ -195,4 +214,10 @@ DDD 레이어 구조 (`interfaces → application → domain`, infrastructure는
 - `infrastructure/` — HTTP 클라이언트, robots.txt, 속도 제한, 파일 저장, JSONL 로깅
 - `interfaces/` — CLI 진입점
 
-상세 문서: [`docs/DDD_ARCHITECTURE.md`](docs/DDD_ARCHITECTURE.md)
+상세 문서:
+
+- [`docs/overview.md`](docs/overview.md) — 프로젝트 개요, 파이프라인 위치
+- [`docs/domain-concepts.md`](docs/domain-concepts.md) — Policy, FetchMeta, 해싱, BFS 큐
+- [`docs/output-format.md`](docs/output-format.md) — storage/ 구조, meta.json 스키마
+- [`docs/policies.md`](docs/policies.md) — 현재 policy 목록, 추가 방법
+- [`docs/DDD_ARCHITECTURE.md`](docs/DDD_ARCHITECTURE.md) — 레이어 구조

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI agents (Cursor, Claude Code, etc.) when working with code in this repository.
 
 ## Commands
 
@@ -81,6 +81,6 @@ Events: `run_started`, `fetch_success`, `fetch_error`, `saved`, `dedup_hit`, `ru
 
 ## Git Workflow
 
-- Branch naming: `codex/` prefix
+- Branch naming: `cursor/` prefix
 - Flow: main → new branch → implement → commit → PR → merge → main
 - Destructive git commands require explicit user approval
