@@ -17,7 +17,9 @@
     "https://ant.design/components/form/",
     "https://ant.design/components/menu/",
     "https://ant.design/components/pagination/",
-    "https://ant.design/components/date-picker/"
+    "https://ant.design/components/date-picker/",
+    "https://ant.design/components/badge/",
+    "https://ant.design/components/tag/"
   ],
   "allowed_paths_prefix": [
     "/components/button/",
@@ -36,11 +38,13 @@
     "/components/form/",
     "/components/menu/",
     "/components/pagination/",
-    "/components/date-picker/"
+    "/components/date-picker/",
+    "/components/badge/",
+    "/components/tag/"
   ],
   "disallowed_paths_prefix": [],
   "max_depth": 1,
-  "max_pages": 25,
+  "max_pages": 30,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true

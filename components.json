@@ -75,6 +75,14 @@
       "id": "tree",
       "keywords": ["Tree", "TreeView", "TreeItem"],
       "priority": "future"
+    },
+    {
+      "id": "badge",
+      "keywords": ["Badge"]
+    },
+    {
+      "id": "chip",
+      "keywords": ["Chip", "Tag", "TagGroup"]
     }
   ]
 }

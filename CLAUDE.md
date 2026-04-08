@@ -75,8 +75,10 @@ Events: `run_started`, `fetch_success`, `fetch_error`, `saved`, `dedup_hit`, `ru
 | `file-upload` | Upload, FileUpload, Dropzone | future |
 | `carousel` | Carousel, Slider, Swiper | future |
 | `tree` | Tree, TreeView, TreeItem | future |
+| `badge` | Badge | — |
+| `chip` | Chip, Tag, TagGroup | — |
 
-- 새 디자인시스템 policy의 `seed_urls`와 `allowed_paths_prefix`는 이 9개 패턴에 해당하는 URL만 포함한다.
+- 새 디자인시스템 policy의 `seed_urls`와 `allowed_paths_prefix`는 이 패턴 목록에 해당하는 URL만 포함한다.
 - W3C(`w3c.json`)와 APG(`apg.json`)도 이 패턴들의 ARIA 스펙 범위로 제한되어 있다.
 
 ## Git Workflow

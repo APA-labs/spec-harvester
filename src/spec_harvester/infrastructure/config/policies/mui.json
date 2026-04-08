@@ -16,7 +16,9 @@
     "https://mui.com/material-ui/react-menu/",
     "https://mui.com/material-ui/react-app-bar/",
     "https://mui.com/material-ui/react-pagination/",
-    "https://mui.com/x/react-date-pickers/date-picker/"
+    "https://mui.com/x/react-date-pickers/date-picker/",
+    "https://mui.com/material-ui/react-badge/",
+    "https://mui.com/material-ui/react-chip/"
   ],
   "allowed_paths_prefix": [
     "/material-ui/react-button/",
@@ -34,11 +36,13 @@
     "/material-ui/react-menu/",
     "/material-ui/react-app-bar/",
     "/material-ui/react-pagination/",
-    "/x/react-date-pickers/date-picker/"
+    "/x/react-date-pickers/date-picker/",
+    "/material-ui/react-badge/",
+    "/material-ui/react-chip/"
   ],
   "disallowed_paths_prefix": [],
   "max_depth": 1,
-  "max_pages": 25,
+  "max_pages": 30,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true

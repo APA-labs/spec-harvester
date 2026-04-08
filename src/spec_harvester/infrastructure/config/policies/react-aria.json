@@ -19,12 +19,13 @@
     "https://react-spectrum.adobe.com/react-aria/DatePicker.html",
     "https://react-spectrum.adobe.com/react-aria/Calendar.html",
     "https://react-spectrum.adobe.com/react-aria/FileTrigger.html",
-    "https://react-spectrum.adobe.com/react-aria/Tree.html"
+    "https://react-spectrum.adobe.com/react-aria/Tree.html",
+    "https://react-spectrum.adobe.com/react-aria/TagGroup.html"
   ],
   "allowed_paths_prefix": ["/react-aria/"],
   "disallowed_paths_prefix": [],
   "max_depth": 1,
-  "max_pages": 25,
+  "max_pages": 30,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true

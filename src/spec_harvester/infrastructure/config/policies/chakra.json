@@ -18,12 +18,14 @@
     "https://www.chakra-ui.com/docs/components/menu",
     "https://www.chakra-ui.com/docs/components/pagination",
     "https://www.chakra-ui.com/docs/components/date-picker",
-    "https://www.chakra-ui.com/docs/components/file-upload"
+    "https://www.chakra-ui.com/docs/components/file-upload",
+    "https://www.chakra-ui.com/docs/components/badge",
+    "https://www.chakra-ui.com/docs/components/tag"
   ],
   "allowed_paths_prefix": ["/docs/components/"],
   "disallowed_paths_prefix": [],
   "max_depth": 1,
-  "max_pages": 20,
+  "max_pages": 25,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true
