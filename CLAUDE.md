@@ -58,25 +58,33 @@ Events: `run_started`, `fetch_success`, `fetch_error`, `saved`, `dedup_hit`, `ru
 
 | id | 키워드 | 우선순위 |
 |----|--------|----------|
-| `button` | Button, IconButton | — |
-| `text-input` | Input, TextField, TextInput | — |
-| `modal-dialog` | Modal, Dialog, Drawer | — |
-| `toggle` | Switch, Toggle, ToggleButton | — |
-| `tabs` | Tabs, TabList | — |
-| `tooltip` | Tooltip, Popover | — |
-| `disclosure` | Accordion, Collapse, Disclosure | — |
 | `accordion` | Accordion, Collapse | — |
-| `select` | Select, Combobox, Dropdown | — |
-| `alert-toast` | Alert, Toast, Notification, Snackbar | high |
+| `alert` | Alert, Banner, InlineAlert | high |
+| `alert-dialog` | AlertDialog, ConfirmDialog, ConfirmationDialog | — |
+| `badge` | Badge | — |
+| `breadcrumb` | Breadcrumb, Breadcrumbs | — |
+| `button` | Button, IconButton | — |
+| `carousel` | Carousel, Slider, Swiper | future |
+| `checkbox` | Checkbox, CheckboxGroup | — |
+| `chip` | Chip, Tag, TagGroup | — |
+| `combobox` | Combobox, Autocomplete, SearchInput | — |
+| `date-picker` | DatePicker, Calendar, DateInput, TimePicker | medium |
+| `disclosure` | Accordion, Collapse, Disclosure | — |
+| `file-upload` | Upload, FileUpload, Dropzone | future |
 | `form-validation` | Form, FormControl, FormField, FormItem | high |
+| `link` | Link, TextLink, Anchor | — |
+| `modal-dialog` | Modal, Dialog, Drawer | — |
 | `navigation-menu` | Navigation, Navbar, Menu, MenuBar | medium |
 | `pagination` | Pagination | medium |
-| `date-picker` | DatePicker, Calendar, DateInput, TimePicker | medium |
-| `file-upload` | Upload, FileUpload, Dropzone | future |
-| `carousel` | Carousel, Slider, Swiper | future |
+| `radio-group` | Radio, RadioGroup, RadioButton | — |
+| `select` | Select, Listbox, Dropdown | — |
+| `table` | Table, DataTable, DataGrid, Grid | — |
+| `tabs` | Tabs, TabList | — |
+| `text-input` | Input, TextField, TextInput | — |
+| `toast` | Toast, Snackbar, Notification | high |
+| `toggle` | Switch, Toggle, ToggleButton | — |
+| `tooltip` | Tooltip, Popover | — |
 | `tree` | Tree, TreeView, TreeItem | future |
-| `badge` | Badge | — |
-| `chip` | Chip, Tag, TagGroup | — |
 
 - 새 디자인시스템 policy의 `seed_urls`와 `allowed_paths_prefix`는 이 패턴 목록에 해당하는 URL만 포함한다.
 - W3C(`w3c.json`)와 APG(`apg.json`)도 이 패턴들의 ARIA 스펙 범위로 제한되어 있다.

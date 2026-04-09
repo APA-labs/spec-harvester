@@ -19,7 +19,12 @@
     "https://ant.design/components/pagination/",
     "https://ant.design/components/date-picker/",
     "https://ant.design/components/badge/",
-    "https://ant.design/components/tag/"
+    "https://ant.design/components/tag/",
+    "https://ant.design/components/breadcrumb/",
+    "https://ant.design/components/checkbox/",
+    "https://ant.design/components/auto-complete/",
+    "https://ant.design/components/radio/",
+    "https://ant.design/components/table/"
   ],
   "allowed_paths_prefix": [
     "/components/button/",
@@ -40,11 +45,16 @@
     "/components/pagination/",
     "/components/date-picker/",
     "/components/badge/",
-    "/components/tag/"
+    "/components/tag/",
+    "/components/breadcrumb/",
+    "/components/checkbox/",
+    "/components/auto-complete/",
+    "/components/radio/",
+    "/components/table/"
   ],
   "disallowed_paths_prefix": [],
   "max_depth": 1,
-  "max_pages": 30,
+  "max_pages": 50,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true

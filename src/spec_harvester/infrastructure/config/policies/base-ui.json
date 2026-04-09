@@ -16,12 +16,14 @@
     "https://base-ui.com/react/components/select",
     "https://base-ui.com/react/components/toast",
     "https://base-ui.com/react/components/field",
-    "https://base-ui.com/react/components/navigation-menu"
+    "https://base-ui.com/react/components/navigation-menu",
+    "https://base-ui.com/react/components/checkbox",
+    "https://base-ui.com/react/components/radio"
   ],
   "allowed_paths_prefix": ["/react/components/"],
   "disallowed_paths_prefix": [],
   "max_depth": 1,
-  "max_pages": 20,
+  "max_pages": 40,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true
