@@ -1,50 +1,73 @@
 {
   "patterns": [
     {
+      "id": "accordion",
+      "keywords": ["Accordion", "Collapse"]
+    },
+    {
+      "id": "alert",
+      "keywords": ["Alert", "Banner", "InlineAlert"],
+      "priority": "high"
+    },
+    {
+      "id": "alert-dialog",
+      "keywords": ["AlertDialog", "ConfirmDialog", "ConfirmationDialog"]
+    },
+    {
+      "id": "badge",
+      "keywords": ["Badge"]
+    },
+    {
+      "id": "breadcrumb",
+      "keywords": ["Breadcrumb", "Breadcrumbs"]
+    },
+    {
       "id": "button",
       "keywords": ["Button", "IconButton"]
     },
     {
-      "id": "text-input",
-      "keywords": ["Input", "TextField", "TextInput"]
+      "id": "carousel",
+      "keywords": ["Carousel", "Slider", "Swiper"],
+      "priority": "future"
     },
     {
-      "id": "modal-dialog",
-      "keywords": ["Modal", "Dialog", "Drawer"]
+      "id": "checkbox",
+      "keywords": ["Checkbox", "CheckboxGroup"]
     },
     {
-      "id": "toggle",
-      "keywords": ["Switch", "Toggle", "ToggleButton"]
+      "id": "chip",
+      "keywords": ["Chip", "Tag", "TagGroup"]
     },
     {
-      "id": "tabs",
-      "keywords": ["Tabs", "TabList"]
+      "id": "combobox",
+      "keywords": ["Combobox", "Autocomplete", "AutoComplete", "SearchInput"]
     },
     {
-      "id": "tooltip",
-      "keywords": ["Tooltip", "Popover"]
+      "id": "date-picker",
+      "keywords": ["DatePicker", "Calendar", "DateInput", "TimePicker"],
+      "priority": "medium"
     },
     {
       "id": "disclosure",
       "keywords": ["Accordion", "Collapse", "Disclosure"]
     },
     {
-      "id": "accordion",
-      "keywords": ["Accordion", "Collapse"]
-    },
-    {
-      "id": "select",
-      "keywords": ["Select", "Combobox", "Dropdown"]
-    },
-    {
-      "id": "alert-toast",
-      "keywords": ["Alert", "Toast", "Notification", "Snackbar"],
-      "priority": "high"
+      "id": "file-upload",
+      "keywords": ["Upload", "FileUpload", "Dropzone"],
+      "priority": "future"
     },
     {
       "id": "form-validation",
       "keywords": ["Form", "FormControl", "FormField", "FormItem"],
       "priority": "high"
+    },
+    {
+      "id": "link",
+      "keywords": ["Link", "TextLink", "Anchor"]
+    },
+    {
+      "id": "modal-dialog",
+      "keywords": ["Modal", "Dialog", "Drawer"]
     },
     {
       "id": "navigation-menu",
@@ -57,32 +80,42 @@
       "priority": "medium"
     },
     {
-      "id": "date-picker",
-      "keywords": ["DatePicker", "Calendar", "DateInput", "TimePicker"],
-      "priority": "medium"
+      "id": "radio-group",
+      "keywords": ["Radio", "RadioGroup", "RadioButton"]
     },
     {
-      "id": "file-upload",
-      "keywords": ["Upload", "FileUpload", "Dropzone"],
-      "priority": "future"
+      "id": "select",
+      "keywords": ["Select", "Listbox", "Dropdown"]
     },
     {
-      "id": "carousel",
-      "keywords": ["Carousel", "Slider", "Swiper"],
-      "priority": "future"
+      "id": "table",
+      "keywords": ["Table", "DataTable", "DataGrid", "Grid"]
+    },
+    {
+      "id": "tabs",
+      "keywords": ["Tabs", "TabList"]
+    },
+    {
+      "id": "text-input",
+      "keywords": ["Input", "TextField", "TextInput"]
+    },
+    {
+      "id": "toast",
+      "keywords": ["Toast", "Snackbar", "Notification"],
+      "priority": "high"
+    },
+    {
+      "id": "toggle",
+      "keywords": ["Switch", "Toggle", "ToggleButton"]
+    },
+    {
+      "id": "tooltip",
+      "keywords": ["Tooltip", "Popover"]
     },
     {
       "id": "tree",
       "keywords": ["Tree", "TreeView", "TreeItem"],
       "priority": "future"
-    },
-    {
-      "id": "badge",
-      "keywords": ["Badge"]
-    },
-    {
-      "id": "chip",
-      "keywords": ["Chip", "Tag", "TagGroup"]
     }
   ]
 }

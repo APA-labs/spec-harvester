@@ -14,12 +14,13 @@
     "https://www.radix-ui.com/primitives/docs/components/navigation-menu",
     "https://www.radix-ui.com/primitives/docs/components/switch",
     "https://www.radix-ui.com/primitives/docs/components/collapsible",
-    "https://www.radix-ui.com/primitives/docs/components/checkbox"
+    "https://www.radix-ui.com/primitives/docs/components/checkbox",
+    "https://www.radix-ui.com/primitives/docs/components/radio-group"
   ],
   "allowed_paths_prefix": ["/primitives/docs/components/"],
   "disallowed_paths_prefix": [],
   "max_depth": 1,
-  "max_pages": 20,
+  "max_pages": 40,
   "rate_limit_ms": 1000,
   "user_agent": "SpecHarvesterCrawler/0.1",
   "respect_robots": true
